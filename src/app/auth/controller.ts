@@ -4,6 +4,7 @@ import { db } from "../../db/index.js";
 import { userTable } from "../../db/schema.js";
 import { eq } from "drizzle-orm";
 import { createHmac, randomBytes } from "node:crypto";
+import { createUserToken , verifyUserToken } from "./utils/tokens.js";
 
 class AuthController {
     public async handleSignup(req: Request, res: Response) {
@@ -56,8 +57,8 @@ class AuthController {
             return res.status(400).json({ message: "invalid credentials"});
         }
 
-        //create token
-        return res.json({message: 'signin success', data: {token: 1}})
+        const token=createUserToken({id : userSelect.id})
+        return res.json({message: 'signin success', data: {token}})
     
 
     }
