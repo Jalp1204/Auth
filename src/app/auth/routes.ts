@@ -10,3 +10,5 @@ export const authRouter: Router = express.Router();
 
 
 authRouter.post("/signup", authControllerInstance.handleSignup.bind(authControllerInstance));
+authRouter.post("/signin", authControllerInstance.handleSignin.bind(authControllerInstance));
+
